@@ -16,13 +16,19 @@ import java.util.List;
 
 @Component
 public class StackExchangeClient {
+
     HttpClient httpClient = HttpClientBuilder.create().build();
     ClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
 private RestTemplate restTemplate = new RestTemplate(requestFactory);
 
-    public List<SiteDto> getSites() throws URISyntaxException {
+    public List<SiteDto> getSites() {
         String url = "https://api.stackexchange.com/2.3/sites?page=1&pagesize=9999&filter=!)Qsyp5INb38jWvNt(CaBwjeI";
-        SitesDto response = restTemplate.getForObject(new URI(url),SitesDto.class);
-        return response.getItems();
+
+        try {
+            SitesDto response = restTemplate.getForObject(new URI(url), SitesDto.class);
+            return response.getItems();
+        }catch (URISyntaxException e){
+            throw new RuntimeException(e);
+        }
     }
 }

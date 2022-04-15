@@ -2,11 +2,14 @@ package app.learn.stackoverflow.model;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-public class StackoverflowWebsite {
+import java.io.Serializable;
 
-    public StackoverflowWebsite(String site_url,
-                                String site_url1,
+public class StackoverflowWebsite{
+
+
+    public StackoverflowWebsite(String substring,
                                 String favicon_url,
                                 String name,
                                 String audience) {
